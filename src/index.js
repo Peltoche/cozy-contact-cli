@@ -4,6 +4,7 @@ import open from 'open'
 import parsePhoneNumber from 'libphonenumber-js'
 import {selectActions, selectCountry} from './menu.js'
 import normalize from './actions/normalize.js'
+import removeDuplicateNumber from './actions/duplicatenumber.js'
 import {Command, Option} from 'commander'
 
 global.fetch = fetch
@@ -31,14 +32,12 @@ let client = await createClientInteractive({
 	}
 })
 
-const actions = await selectActions()
-
-if (actions.includes('normalize')) {
-	const country = await selectCountry()
-	console.log('country selected: ', country)
-	await normalize(client, country)
+switch (await selectActions()) {
+	case 'normalize':
+		const country = await selectCountry()
+		await normalize(client, country)
+		break
+	case 'duplicate-number':
+		await removeDuplicateNumber(client)
+		break
 }
-
-
-
-
