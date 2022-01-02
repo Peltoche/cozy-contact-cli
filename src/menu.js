@@ -3,7 +3,7 @@ import prompts from 'prompts'
 async function selectActions() {
 	const response = await prompts([
 		{
-			type: 'multiselect',
+			type: 'select',
 			name: 'actions',
 			message: 'Which clean do you want to do?',
 			choices: [
