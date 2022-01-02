@@ -17,10 +17,11 @@ export default async (client, country) => {
 				continue
 			}
 
+			console.log(contact.fullname, ': ', phone.number, ' => ', parsed.number)
+
 			phone.number = parsed.number
 			modified += 1
 
-			console.log(contact.fullname, ': ', phone.number, ' => ', parsed.number)
 		}
 
 		if (modified > 0) {
