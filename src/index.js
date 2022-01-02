@@ -5,7 +5,7 @@ import parsePhoneNumber from 'libphonenumber-js'
 import {selectActions, selectCountry} from './menu.js'
 import normalize from './actions/normalize.js'
 import removeDuplicateNumber from './actions/duplicatenumber.js'
-import removeAllContacts from './actions/removeall.js.js'
+import removeAllContacts from './actions/removeall.js'
 import {Command, Option} from 'commander'
 
 global.fetch = fetch
