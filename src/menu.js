@@ -9,6 +9,7 @@ async function selectActions() {
 			choices: [
 				{ title: 'Normalize phonenumber to the international format (+33xxx)', value: 'normalize' },
 				{ title: 'Remove duplicate phonenumbers inside a contact', value: 'duplicate-number' },
+				{ title: 'Remove all your contacts', value: 'remove-all' },
 			],
 		}
 	])

@@ -5,6 +5,7 @@ import parsePhoneNumber from 'libphonenumber-js'
 import {selectActions, selectCountry} from './menu.js'
 import normalize from './actions/normalize.js'
 import removeDuplicateNumber from './actions/duplicatenumber.js'
+import removeAllContacts from './actions/removeall.js.js'
 import {Command, Option} from 'commander'
 
 global.fetch = fetch
@@ -40,4 +41,6 @@ switch (await selectActions()) {
 	case 'duplicate-number':
 		await removeDuplicateNumber(client)
 		break
+	case 'remove-all':
+		await removeAllContacts(client)
 }
