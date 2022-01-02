@@ -4,15 +4,32 @@ import parsePhoneNumber from 'libphonenumber-js'
 
 export default async (client, country) => {
 	const allContacts = await getAllContacts(client)
-	for (const contact of allContacts) {
+	for (let contact of allContacts) {
 		if (!contact.phone || contact.phone.length == 0) {
 			continue
 		}
 
-		for (const phone of contact.phone) {
+		let modified = 0
+
+		for (let phone of contact.phone) {
 			const parsed = parsePhoneNumber(phone.number, country)
-			if (parsed.number !== phone.number) {
-				console.log(contact.fullname, ': ', phone.number, ' => ', parsed.number)
+			if (parsed.number == phone.number) {
+				continue
+			}
+
+			phone.number = parsed.number
+			modified += 1
+
+			console.log(contact.fullname, ': ', phone.number, ' => ', parsed.number)
+		}
+
+		if (modified > 0) {
+			let res = await client.stackClient.collection('io.cozy.contacts').update(contact)
+			if (res.data) {
+				console.log(contact.fullname, modified, 'contact successfully modified\n')
+			} else {
+				console.log(res)
+				return
 			}
 		}
 	}
