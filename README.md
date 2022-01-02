@@ -25,3 +25,6 @@ yarn install
 yarn start --url=https://mysuperinstance.mycozy.cloud
 ```
 
+At the first utilisation the cli will redirect you to an browser where you will need to connect to your instance and authorize the application. This tools doesn't have
+access to you password and can only interact with you contact data.
+
